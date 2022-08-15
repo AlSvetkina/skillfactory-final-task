@@ -5,6 +5,8 @@ import time
 import os
 from termcolor import colored
 
+from pages.elements import WebElement, ManyWebElements
+
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -19,10 +21,14 @@ class WebPage(object):
         self.web_driver = web_driver
         self.get(url)
 
+    def element(self, **kwargs):
+        return WebElement(self.web_driver, **kwargs)
+
+    def elements(self, **kwargs):
+        return ManyWebElements(self.web_driver, **kwargs)
+
     def get(self, url):
-        print(f'WebPage - get url: {url}')
         self.web_driver.get(url)
-        #  self.wait_page_loaded()
 
     def go_back(self):
         self.web_driver.back()
