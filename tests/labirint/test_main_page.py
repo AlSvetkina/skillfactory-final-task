@@ -12,6 +12,7 @@ def test_check_search(web_browser):
 
     assert suggestions.count() == 5
 
+
 def test_check_wrong_input_in_search(web_browser):
     page = MainPage(web_browser, url='/')
 
@@ -21,6 +22,7 @@ def test_check_wrong_input_in_search(web_browser):
     assert suggestions.count() == 5
 
     assert 'Букварь' in suggestions.get_text()[0]
+
 
 def test_check_search_cancelation(web_browser):
     page = MainPage(web_browser, url='/')
@@ -33,3 +35,16 @@ def test_check_search_cancelation(web_browser):
     suggestions_block = page.element(id="autohelp_rows")
 
     assert suggestions_block.is_visible() == False
+
+
+def test_check_top_header_books(web_browser):
+    page = MainPage(web_browser, url='/')
+
+    top_header = page.elements(class_name="b-header-b-menu-e-text")
+    item_text = top_header[0].text
+    top_header[0].click()
+    time.sleep(2)
+
+    elements = page.elements(tag_name="h1")
+
+    assert elements.get_text()[0] == item_text
