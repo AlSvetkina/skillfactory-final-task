@@ -2,6 +2,7 @@ from pages.labirint import MainPage
 
 import time
 
+
 def test_check_search(web_browser):
     """ Make sure main search works fine. """
 
@@ -34,17 +35,88 @@ def test_check_search_cancelation(web_browser):
 
     suggestions_block = page.element(id="autohelp_rows")
 
-    assert suggestions_block.is_visible() == False
+    assert suggestions_block.is_visible()
 
 
 def test_check_top_header_books(web_browser):
+    """ Make sure that link to books page works """
+
     page = MainPage(web_browser, url='/')
 
+    top_bar_element = 0
     top_header = page.elements(class_name="b-header-b-menu-e-text")
-    item_text = top_header[0].text
-    top_header[0].click()
-    time.sleep(2)
+    href = top_header[top_bar_element].get_attribute('href')
+    top_header[top_bar_element].click()
+    time.sleep(1)
 
-    elements = page.elements(tag_name="h1")
+    assert page.get_current_url() == href
 
-    assert elements.get_text()[0] == item_text
+
+def test_check_top_header_main_books(web_browser):
+    """ Make sure that link to main books page works """
+
+    page = MainPage(web_browser, url='/')
+
+    top_bar_element = 1
+    top_header = page.elements(class_name="b-header-b-menu-e-text")
+    href = top_header[top_bar_element].get_attribute('href')
+    top_header[top_bar_element].click()
+    time.sleep(1)
+
+    assert page.get_current_url() == href
+
+
+def test_check_top_header_school(web_browser):
+    """ Make sure that link to school page works """
+
+    page = MainPage(web_browser, url='/')
+
+    top_bar_element = 2
+    top_header = page.elements(class_name="b-header-b-menu-e-text")
+    href = top_header[top_bar_element].get_attribute('href')
+    top_header[top_bar_element].click()
+    time.sleep(1)
+
+    assert page.get_current_url() == href
+
+
+def test_check_top_header_toys(web_browser):
+    """ Make sure that link to toys page works """
+
+    page = MainPage(web_browser, url='/')
+
+    top_bar_element = 3
+    top_header = page.elements(class_name="b-header-b-menu-e-text")
+    href = top_header[top_bar_element].get_attribute('href')
+    top_header[top_bar_element].click()
+    time.sleep(1)
+
+    assert page.get_current_url() == href
+
+
+def test_check_top_header_office(web_browser):
+    """ Make sure that link to office page works """
+
+    page = MainPage(web_browser, url='/')
+
+    top_bar_element = 4
+    top_header = page.elements(class_name="b-header-b-menu-e-text")
+    href = top_header[top_bar_element].get_attribute('href')
+    top_header[top_bar_element].click()
+    time.sleep(1)
+
+    assert page.get_current_url() == href
+
+
+#  def test_check_top_header_club(web_browser):
+    #  """ Make sure that link to office page works """
+
+    #  page = MainPage(web_browser, url='/')
+
+    #  top_bar_element = 6
+    #  top_header = page.elements(class_name="b-header-b-menu-e-text")
+    #  href = top_header[top_bar_element].get_attribute('href')
+    #  top_header[top_bar_element].click()
+    #  time.sleep(1)
+
+    #  assert page.get_current_url() == href
