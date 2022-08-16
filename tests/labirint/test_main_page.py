@@ -121,3 +121,55 @@ def test_check_top_header_house_hold(web_browser):
     time.sleep(1)
 
     assert page.get_current_url() == href
+
+
+def test_check_sub_header_help(web_browser):
+    """ Make sure that link to help works on big screen """
+    page = MainPage(web_browser, url='/')
+
+    sub_header_index = 0
+    sub_header = page.elements(class_name="b-header-b-sec-menu-e-link")
+    href = sub_header[sub_header_index].get_attribute('href')
+    sub_header[sub_header_index].click()
+    time.sleep(1)
+
+    assert page.get_current_url() == href
+
+
+def test_check_sub_header_certeficates(web_browser):
+    """ Make sure that link to certeficates works on big screen """
+    page = MainPage(web_browser, url='/')
+
+    sub_header_index = 1
+    sub_header = page.elements(class_name="b-header-b-sec-menu-e-link")
+    href = sub_header[sub_header_index].get_attribute('href')
+    sub_header[sub_header_index].click()
+    time.sleep(1)
+
+    assert page.get_current_url() == href
+
+
+def test_check_sub_header_ratings(web_browser):
+    """ Make sure that link to ratings works on big screen """
+    page = MainPage(web_browser, url='/')
+
+    sub_header_index = 2
+    sub_header = page.elements(class_name="b-header-b-sec-menu-e-link")
+    href = sub_header[sub_header_index].get_attribute('href')
+    sub_header[sub_header_index].click()
+    time.sleep(1)
+
+    assert page.get_current_url() == href
+
+
+def test_check_sub_header_novelty(web_browser):
+    """ Make sure that link to novelty works on big screen """
+    page = MainPage(web_browser, url='/')
+
+    sub_header_index = 3
+    sub_header = page.elements(class_name="b-header-b-sec-menu-e-link")
+    href = sub_header[sub_header_index].get_attribute('href')
+    sub_header[sub_header_index].click()
+    time.sleep(1)
+
+    assert page.get_current_url() == href
