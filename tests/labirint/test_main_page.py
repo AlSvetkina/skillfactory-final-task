@@ -108,15 +108,16 @@ def test_check_top_header_office(web_browser):
     assert page.get_current_url() == href
 
 
-#  def test_check_top_header_club(web_browser):
-    #  """ Make sure that link to office page works """
+def test_check_top_header_house_hold(web_browser):
+    """ Make sure that link to house hould works on small screen """
+    web_browser.set_window_size(960, 540)
 
-    #  page = MainPage(web_browser, url='/')
+    page = MainPage(web_browser, url='/')
 
-    #  top_bar_element = 6
-    #  top_header = page.elements(class_name="b-header-b-menu-e-text")
-    #  href = top_header[top_bar_element].get_attribute('href')
-    #  top_header[top_bar_element].click()
-    #  time.sleep(1)
+    top_bar_element = 5
+    top_header = page.elements(class_name="b-header-b-menu-e-text")
+    href = top_header[top_bar_element].get_attribute('href')
+    top_header[top_bar_element].click()
+    time.sleep(1)
 
-    #  assert page.get_current_url() == href
+    assert page.get_current_url() == href
