@@ -18,9 +18,5 @@ class MainPage(WebPage):
 
         self.search = self.element(id='search-field')
 
-        #  print(self.search)
-        #  print(self.search_suggestions)
-        #  print("count:", self.search_suggestions.count())
-
     def get_search_suggestions(self):
         return self.elements(class_name="b-suggests-e-item-name")
