@@ -10,6 +10,8 @@ from pages.elements import WebElement, ManyWebElements
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.action_chains import ActionChains
 
 
 class WebPage(object):
@@ -33,6 +35,9 @@ class WebPage(object):
     def go_back(self):
         self.web_driver.back()
         self.wait_page_loaded()
+
+    def send_escape(self):
+        ActionChains(self.web_driver).send_keys(Keys.ESCAPE).perform()
 
     def refresh(self):
         self.web_driver.refresh()
