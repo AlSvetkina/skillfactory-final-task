@@ -1,4 +1,6 @@
 from pages.labirint import MainPage
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.action_chains import ActionChains
 
 import time
 
@@ -67,89 +69,189 @@ def test_book_deffered_clear_page(web_browser):
 
     assert page.elements(class_name="product").count() == 1
 
-    page.elements(class_name="btn-clear-blue").click()
+    page.elements(class_name="btn-clear-blue")[1].click()
 
     assert page.elements(class_name="product").count() == 0
 
-#  def test_add_book_to_compare(web_browser):
-    #  """ Make sure main search works fine. """
-    #  web_browser.set_window_size(1280, 1024)
 
-    #  page = MainPage(web_browser, url='/')
-    #  page.elements(class_name="icon-compare")[0].click()
+def test_book_deffered_preview(web_browser):
+    """ Make sure main search works fine. """
 
-    #  compare = page.elements(class_name="js-card-block-actions-compare")[0]
-    #  compare.click()
+    page = MainPage(web_browser, url='/')
 
-    #  assert compare.text == "Перейти к сравнению"
+    elem = page.elements(class_name="js-open-deferred-block")[0]
 
+    elem.click()
+    elem.click()
 
-#  def test_add_book_to_compare_and_close_menu(web_browser):
-    #  """ Make sure main search works fine. """
-    #  web_browser.set_window_size(1280, 1024)
+    page.elements(
+        class_name="b-list-item-hover")[0].click()
 
-    #  page = MainPage(web_browser, url='/')
-    #  page.elements(class_name="icon-compare")[0].click()
+    elem = page.elements(class_name="product")[0]
 
-    #  compare = page.elements(class_name="js-card-block-actions-compare")[0]
-    #  compare.click()
+    elem.click()
 
-    #  page.send_escape()
-
-    #  assert not compare.is_displayed()
+    assert page.element(id="cart-preview").is_visible()
 
 
-#  def test_add_two_and_compare(web_browser):
-    #  """ Make sure main search works fine. """
-    #  page = MainPage(web_browser, url='/')
-    #  web_browser.execute_script("window.scrollBy(0,500)")
+def test_book_deffered_preview_close(web_browser):
+    """ Make sure main search works fine. """
 
-    #  page.elements(class_name="icon-compare")[0].click()
+    page = MainPage(web_browser, url='/')
 
-    #  compare_1 = page.elements(class_name="icon-compare")[0]
-    #  book_title_1 = compare_1.get_attribute("data-title")
+    elem = page.elements(class_name="js-open-deferred-block")[0]
 
-    #  compare_2 = page.elements(class_name="icon-compare")[1]
-    #  book_title_2 = compare_2.get_attribute("data-title")
+    elem.click()
+    elem.click()
 
-    #  assert book_title_1 != book_title_2
+    page.elements(
+        class_name="b-list-item-hover")[0].click()
 
-    #  compare_1.click()
-    #  compare_1 = page.elements(class_name="js-card-block-actions-compare")[0]
-    #  compare_1.click()
-    #  page.send_escape()
+    elem = page.elements(class_name="product")[0]
 
-    #  compare_2.click()
-    #  compare_2 = page.elements(class_name="js-card-block-actions-compare")[0]
-    #  compare_2.click()
-    #  compare_2.click()
+    elem.click()
 
-    #  assert page.get_current_url() == f'{page._base_url}/compare/'
-    #  assert page.elements(class_name="item-name__href").count() == 2
-    #  #  items = page.elements(class_name="item-name__href")
-    #  #  assert items[0].text == book_title_1
-    #  #  assert items[1].text == book_title_2
+    preview = page.element(id="cart-preview")
+
+    assert preview.is_visible()
+
+    ActionChains(web_browser).send_keys(Keys.ESCAPE).perform()
+
+    assert not preview.is_visible()
 
 
-#  def test_add_two_and_compare_and_cancel(web_browser):
-    #  """ Make sure main search works fine. """
-    #  page = MainPage(web_browser, url='/')
-    #  web_browser.execute_script("window.scrollBy(0,500)")
+def test_book_deffered_select_page(web_browser):
+    """ Make sure main search works fine. """
 
-    #  page.elements(class_name="icon-compare")[0].click()
+    page = MainPage(web_browser, url='/')
 
-    #  compare_1 = page.elements(class_name="icon-compare")[0]
-    #  compare_1.click()
-    #  compare_1 = page.elements(class_name="js-card-block-actions-compare")[0]
-    #  compare_1.click()
-    #  page.send_escape()
+    elem = page.elements(class_name="js-open-deferred-block")[0]
 
-    #  compare_2 = page.elements(class_name="icon-compare")[1]
-    #  compare_2.click()
-    #  compare_2 = page.elements(class_name="js-card-block-actions-compare")[0]
-    #  compare_2.click()
-    #  compare_2.click()
+    elem.click()
+    elem.click()
 
-    #  page.elements(class_name="compare-delete-list__text")[0].click()
+    page.elements(
+        class_name="b-list-item-hover")[0].click()
 
-    #  assert page.elements(class_name="item-name__href").count() == 0
+    elem = page.elements(class_name="product")[0]
+
+    assert 'product-m-checked' not in elem.get_attribute('class')
+
+    page.elements(class_name="btn-clear-blue")[0].click()
+
+    assert 'product-m-checked' in elem.get_attribute('class')
+
+
+def test_book_deffered_select_all_page(web_browser):
+    """ Make sure main search works fine. """
+
+    page = MainPage(web_browser, url='/')
+
+    elem = page.elements(class_name="js-open-deferred-block")[0]
+
+    elem.click()
+
+    elem = page.elements(class_name="js-open-deferred-block")[1]
+
+    elem.click()
+    elem.click()
+
+    page.elements(
+        class_name="b-list-item-hover")[0].click()
+
+    page.elements(class_name="btn-clear-blue")[0].click()
+
+    assert page.elements(class_name="product").count() == 2
+
+    for elem in page.elements(class_name="product"):
+        assert 'product-m-checked' in elem.get_attribute('class')
+
+
+def test_book_deffered_select_all_deselect_all_page(web_browser):
+    """ Make sure main search works fine. """
+
+    page = MainPage(web_browser, url='/')
+
+    elem = page.elements(class_name="js-open-deferred-block")[0]
+
+    elem.click()
+
+    elem = page.elements(class_name="js-open-deferred-block")[1]
+
+    elem.click()
+    elem.click()
+
+    page.elements(
+        class_name="b-list-item-hover")[0].click()
+
+    assert page.elements(class_name="product").count() == 2
+
+    for elem in page.elements(class_name="product"):
+        assert 'product-m-checked' not in elem.get_attribute('class')
+
+    page.elements(class_name="btn-clear-blue")[0].click()
+
+    assert 'product-m-checked' in elem.get_attribute('class')
+    for elem in page.elements(class_name="product"):
+        assert 'product-m-checked' in elem.get_attribute('class')
+
+    policy = page.elements(class_name="js-cookie-policy-agree")
+    if policy.count() == 1:
+        policy[0].click()
+
+    page.elements(class_name="js-ap-btn-cancel")[0].click()
+
+    for elem in page.elements(class_name="product"):
+        assert 'product-m-checked' not in elem.get_attribute('class')
+
+def test_book_deffered_select_all_and_delete_all(web_browser):
+    """ Make sure main search works fine. """
+
+    page = MainPage(web_browser, url='/')
+
+    elem = page.elements(class_name="js-open-deferred-block")[0]
+
+    elem.click()
+
+    elem = page.elements(class_name="js-open-deferred-block")[1]
+
+    elem.click()
+    elem.click()
+
+    page.elements(
+        class_name="b-list-item-hover")[0].click()
+
+    assert page.elements(class_name="product").count() == 2
+
+    for elem in page.elements(class_name="product"):
+        assert 'product-m-checked' not in elem.get_attribute('class')
+
+    page.elements(class_name="btn-clear-blue")[0].click()
+
+    page.elements(class_name="js-ap-btn-remove")[0].click()
+
+    assert page.elements(class_name="product").count() == 0
+
+
+def test_book_deffered_select_and_deselect_page(web_browser):
+    """ Make sure main search works fine. """
+
+    page = MainPage(web_browser, url='/')
+
+    elem = page.elements(class_name="js-open-deferred-block")[0]
+
+    elem.click()
+    elem.click()
+
+    page.elements(
+        class_name="b-list-item-hover")[0].click()
+
+    elem = page.elements(class_name="product")[0]
+
+    page.elements(class_name="btn-clear-blue")[0].click()
+
+    assert 'product-m-checked' in elem.get_attribute('class')
+
+    elem.click()
+
+    assert 'product-m-checked' not in elem.get_attribute('class')
