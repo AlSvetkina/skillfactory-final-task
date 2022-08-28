@@ -5,7 +5,7 @@ from selenium.webdriver.common.action_chains import ActionChains
 import time
 
 
-def test_add_book_to_deffered(web_browser):
+def test_book_deffered_page_add_book(web_browser):
     """ Make sure main search works fine. """
 
     page = MainPage(web_browser, url='/')
@@ -19,7 +19,7 @@ def test_add_book_to_deffered(web_browser):
     assert 'active' in elem.get_attribute('class')
 
 
-def test_book_deffered_menu(web_browser):
+def test_book_deffered_page_menu(web_browser):
     """ Make sure main search works fine. """
 
     page = MainPage(web_browser, url='/')
@@ -54,7 +54,7 @@ def test_book_deffered_page(web_browser):
         "data-product-id") == book_id
 
 
-def test_book_deffered_clear_page(web_browser):
+def test_book_deffered_page_clear(web_browser):
     """ Make sure main search works fine. """
 
     page = MainPage(web_browser, url='/')
@@ -74,7 +74,7 @@ def test_book_deffered_clear_page(web_browser):
     assert page.elements(class_name="product").count() == 0
 
 
-def test_book_deffered_preview(web_browser):
+def test_book_deffered_page_preview(web_browser):
     """ Make sure main search works fine. """
 
     page = MainPage(web_browser, url='/')
@@ -90,11 +90,13 @@ def test_book_deffered_preview(web_browser):
     elem = page.elements(class_name="product")[0]
 
     elem.click()
+
+    time.sleep(1)
 
     assert page.element(id="cart-preview").is_visible()
 
 
-def test_book_deffered_preview_close(web_browser):
+def test_book_deffered_page_preview_close(web_browser):
     """ Make sure main search works fine. """
 
     page = MainPage(web_browser, url='/')
@@ -110,6 +112,8 @@ def test_book_deffered_preview_close(web_browser):
     elem = page.elements(class_name="product")[0]
 
     elem.click()
+
+    time.sleep(1)
 
     preview = page.element(id="cart-preview")
 
@@ -120,7 +124,7 @@ def test_book_deffered_preview_close(web_browser):
     assert not preview.is_visible()
 
 
-def test_book_deffered_select_page(web_browser):
+def test_book_deffered_page_select_page(web_browser):
     """ Make sure main search works fine. """
 
     page = MainPage(web_browser, url='/')
@@ -142,7 +146,7 @@ def test_book_deffered_select_page(web_browser):
     assert 'product-m-checked' in elem.get_attribute('class')
 
 
-def test_book_deffered_select_all_page(web_browser):
+def test_book_deffered_page_select_all_page(web_browser):
     """ Make sure main search works fine. """
 
     page = MainPage(web_browser, url='/')
@@ -167,7 +171,7 @@ def test_book_deffered_select_all_page(web_browser):
         assert 'product-m-checked' in elem.get_attribute('class')
 
 
-def test_book_deffered_select_all_and_move_to_basket(web_browser):
+def test_book_deffered_page_select_all_and_move_to_basket(web_browser):
     """ Make sure main search works fine. """
 
     page = MainPage(web_browser, url='/')
@@ -199,7 +203,7 @@ def test_book_deffered_select_all_and_move_to_basket(web_browser):
         class_name="b-basket-popinfo-e-text-m-add").count() == 0
 
 
-def test_book_deffered_select_all_and_move_to_basket_and_confirm(web_browser):
+def test_book_deffered_page_select_all_and_move_to_basket_and_confirm(web_browser):
     """ Make sure main search works fine. """
 
     page = MainPage(web_browser, url='/')
@@ -241,7 +245,7 @@ def test_book_deffered_select_all_and_move_to_basket_and_confirm(web_browser):
         assert elem.get_attribute('data-product-id') in ids
 
 
-def test_book_deffered_select_all_deselect_all_page(web_browser):
+def test_book_deffered_page_select_all_deselect_all_page(web_browser):
     """ Make sure main search works fine. """
 
     page = MainPage(web_browser, url='/')
@@ -275,7 +279,7 @@ def test_book_deffered_select_all_deselect_all_page(web_browser):
         assert 'product-m-checked' not in elem.get_attribute('class')
 
 
-def test_book_deffered_select_all_and_delete_all(web_browser):
+def test_book_deffered_page_select_all_and_delete_all(web_browser):
     """ Make sure main search works fine. """
 
     page = MainPage(web_browser, url='/')
@@ -304,7 +308,7 @@ def test_book_deffered_select_all_and_delete_all(web_browser):
     assert page.elements(class_name="product").count() == 0
 
 
-def test_book_deffered_select_and_deselect_page(web_browser):
+def test_book_deffered_page_select_and_deselect_page(web_browser):
     """ Make sure main search works fine. """
 
     page = MainPage(web_browser, url='/')
@@ -323,6 +327,96 @@ def test_book_deffered_select_and_deselect_page(web_browser):
 
     assert 'product-m-checked' in elem.get_attribute('class')
 
-    elem.click()
+    page.elements(class_name="b-checkbox-m-radius")[0].click()
 
     assert 'product-m-checked' not in elem.get_attribute('class')
+
+
+def test_book_deffered_page_header_icon(web_browser):
+    """ Make sure main search works fine. """
+
+    page = MainPage(web_browser, url='/')
+
+    elem = page.elements(class_name="js-open-deferred-block")[0]
+
+    elem.click()
+
+    time.sleep(1)
+
+    assert page.elements(
+        class_name="b-header-b-personal-e-icon-count-m-putorder")[0].text == "1"
+
+
+def test_book_deffered_page_header_icon_to_putorder(web_browser):
+    """ Make sure main search works fine. """
+
+    page = MainPage(web_browser, url='/')
+
+    elem = page.elements(class_name="js-open-deferred-block")[0]
+
+    id = elem.get_attribute("data-id_book")
+
+    elem.click()
+
+    page.elements(class_name="top-link-main_putorder")[0].click()
+
+    assert page.get_current_url() == f'{page._base_url}/cabinet/putorder/'
+
+    product_cart = page.elements(class_name="product-cart")[0]
+
+    assert id == product_cart.get_attribute("data-product-id")
+
+
+def test_book_deffered_page_header_icon_to_basket_putorder(web_browser):
+    """ Make sure main search works fine. """
+
+    page = MainPage(web_browser, url='/')
+
+    elem = page.elements(class_name="js-open-deferred-block")[0]
+
+    id = elem.get_attribute("data-id_book")
+
+    elem.click()
+
+    page.elements(class_name="cart-icon-js")[0].click()
+
+    assert page.get_current_url() == f'{page._base_url}/cart/'
+
+    page.elements(class_name="ui-tabs-anchor")[1].click()
+
+    assert not page.element(id="step1-default").is_visible()
+
+    product_cart = page.elements(class_name="product-cart")[0]
+
+    assert id == product_cart.get_attribute("data-product-id")
+
+
+def test_book_deffered_page_header_icon_to_basket_putorder_move_to_basket(web_browser):
+    """ Make sure main search works fine. """
+
+    page = MainPage(web_browser, url='/')
+
+    elem = page.elements(class_name="js-open-deferred-block")[0]
+
+    id = elem.get_attribute("data-id_book")
+
+    elem.click()
+
+    page.elements(class_name="cart-icon-js")[0].click()
+
+    assert page.get_current_url() == f'{page._base_url}/cart/'
+
+    page.elements(class_name="ui-tabs-anchor")[1].click()
+
+    page.elements(class_name="js-buy-wishlist")[0].click()
+
+    alert = web_browser.switch_to.alert
+    alert.accept()
+
+    time.sleep(1)
+
+    assert page.element(id="step1-default").is_visible()
+
+    product_cart = page.elements(class_name="product-cart")[0]
+
+    assert id == product_cart.get_attribute("data-product-id")

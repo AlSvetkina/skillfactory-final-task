@@ -22,20 +22,16 @@ def test_check_wrong_input_in_search(web_browser):
 
     assert suggestions.count() == 5
 
-    assert 'Букварь' in suggestions.get_text()[0]
-
 
 def test_check_search_cancelation(web_browser):
     page = MainPage(web_browser, url='/')
 
     page.search.set_value(",erdfhm")
-    cancel_btn = page.element(class_name="b-header-b-search-e-clear-btn-wrap")
-    cancel_btn.click()
-    time.sleep(1)
+    page.send_escape()
 
     suggestions_block = page.element(id="autohelp_rows")
 
-    assert suggestions_block.is_visible()
+    assert not suggestions_block.is_visible()
 
 
 def test_check_top_header_books(web_browser):
