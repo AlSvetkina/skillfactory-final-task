@@ -274,6 +274,7 @@ def test_book_deffered_select_all_deselect_all_page(web_browser):
     for elem in page.elements(class_name="product"):
         assert 'product-m-checked' not in elem.get_attribute('class')
 
+
 def test_book_deffered_select_all_and_delete_all(web_browser):
     """ Make sure main search works fine. """
 

@@ -173,3 +173,44 @@ def test_check_sub_header_novelty(web_browser):
     time.sleep(1)
 
     assert page.get_current_url() == href
+
+
+def test_main_page_gallery_next(web_browser):
+    """ Make sure that link to novelty works on big screen """
+    page = MainPage(web_browser, url='/')
+
+    carousel_items = page.elements(class_name="jcarousel-item")
+
+    carousel_items_1 = carousel_items[0]
+
+    assert carousel_items_1.is_displayed()
+
+    product = page.elements(class_name="product_labeled")[0]
+
+    assert product.is_displayed()
+
+    arrow_right = page.element(class_name="carousel-arrow-right")
+    arrow_right.click()
+
+    time.sleep(1)
+
+    assert not product.is_displayed()
+
+
+def test_main_page_gallery_next_and_back(web_browser):
+    """ Make sure that link to novelty works on big screen """
+    page = MainPage(web_browser, url='/')
+
+    product = page.elements(class_name="product_labeled")[0]
+
+    page.element(class_name="carousel-arrow-right").click()
+
+    time.sleep(1)
+
+    assert not product.is_displayed()
+
+    page.element(class_name="carousel-arrow-left").click()
+
+    time.sleep(1)
+
+    assert product.is_displayed()
