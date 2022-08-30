@@ -137,8 +137,12 @@ def test_book_deffered_page_select_page(web_browser):
     elem.click()
     elem.click()
 
+    time.sleep(1)
+
     page.elements(
         class_name="b-list-item-hover")[0].click()
+
+    time.sleep(1)
 
     elem = page.elements(class_name="product")[0]
 
@@ -188,10 +192,16 @@ def test_book_deffered_page_select_all_and_move_to_basket(web_browser):
     elem.click()
     elem.click()
 
+    time.sleep(1)
+
     page.elements(
         class_name="b-list-item-hover")[0].click()
 
+    time.sleep(1)
+
     page.elements(class_name="btn-clear-blue")[0].click()
+
+    time.sleep(1)
 
     products = page.elements(class_name="product")
 

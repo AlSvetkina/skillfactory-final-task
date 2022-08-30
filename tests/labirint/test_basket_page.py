@@ -26,6 +26,8 @@ def test_put_twice_the_same_in_basket(web_browser):
 
     buy_links[0].click()
 
+    time.sleep(1)
+
     basket = page.elements(
         class_name="b-header-b-personal-e-icon-count-m-cart")[0]
     assert basket.text == "1"
@@ -49,6 +51,8 @@ def test_put_twice_different_in_basket(web_browser):
 
     buy_links[0].click()
 
+    time.sleep(1)
+
     basket = page.elements(
         class_name="b-header-b-personal-e-icon-count-m-cart")[0]
     assert basket.text == "1"
@@ -70,6 +74,8 @@ def test_add_to_basket_and_check_quantity(web_browser):
     buy_links[0].click()
     buy_links[0].click()
 
+    time.sleep(1)
+
     quantity = page.elements(class_name="quantity")[0]
     assert quantity.get_attribute('value') == "1"
 
@@ -83,6 +89,8 @@ def test_add_to_basket_and_increase(web_browser):
 
     buy_links[0].click()
     buy_links[0].click()
+
+    time.sleep(1)
 
     btn_increase = page.elements(class_name="btn-increase")[0]
     btn_increase.click()
