@@ -15,6 +15,8 @@ def test_check_search(web_browser):
 
 
 def test_check_wrong_input_in_search(web_browser):
+    """ Make sure main search works fine with english layout. """
+
     page = MainPage(web_browser, url='/')
 
     page.search.set_value(",erdfhm")
@@ -24,6 +26,8 @@ def test_check_wrong_input_in_search(web_browser):
 
 
 def test_check_search_cancelation(web_browser):
+    """ Make sure search suggestions list can be closed  """
+
     page = MainPage(web_browser, url='/')
 
     page.search.set_value(",erdfhm")
@@ -35,7 +39,7 @@ def test_check_search_cancelation(web_browser):
 
 
 def test_check_top_header_books(web_browser):
-    """ Make sure that link to books page works """
+    """ Make sure that header menu link to books page works """
 
     page = MainPage(web_browser, url='/')
 
@@ -49,7 +53,7 @@ def test_check_top_header_books(web_browser):
 
 
 def test_check_top_header_main_books(web_browser):
-    """ Make sure that link to main books page works """
+    """ Make sure that header menu link to main books page works """
 
     page = MainPage(web_browser, url='/')
 
@@ -63,7 +67,7 @@ def test_check_top_header_main_books(web_browser):
 
 
 def test_check_top_header_school(web_browser):
-    """ Make sure that link to school page works """
+    """ Make sure that header menu link to school page works """
 
     page = MainPage(web_browser, url='/')
 
@@ -77,7 +81,7 @@ def test_check_top_header_school(web_browser):
 
 
 def test_check_top_header_toys(web_browser):
-    """ Make sure that link to toys page works """
+    """ Make sure that header menu link to toys page works """
 
     page = MainPage(web_browser, url='/')
 
@@ -91,7 +95,7 @@ def test_check_top_header_toys(web_browser):
 
 
 def test_check_top_header_office(web_browser):
-    """ Make sure that link to office page works """
+    """ Make sure that header menu link to office page works """
 
     page = MainPage(web_browser, url='/')
 
@@ -105,7 +109,8 @@ def test_check_top_header_office(web_browser):
 
 
 def test_check_top_header_house_hold(web_browser):
-    """ Make sure that link to house hould works on small screen """
+    """ Make sure that header menu link to house hold works on small screen """
+
     web_browser.set_window_size(960, 540)
 
     page = MainPage(web_browser, url='/')
@@ -120,7 +125,8 @@ def test_check_top_header_house_hold(web_browser):
 
 
 def test_check_sub_header_help(web_browser):
-    """ Make sure that link to help works on big screen """
+    """ Make sure that header menu link to help works on big screen """
+
     page = MainPage(web_browser, url='/')
 
     sub_header_index = 0
@@ -132,8 +138,9 @@ def test_check_sub_header_help(web_browser):
     assert page.get_current_url() == href
 
 
-def test_check_sub_header_certeficates(web_browser):
-    """ Make sure that link to certeficates works on big screen """
+def test_check_sub_header_certificates(web_browser):
+    """ Make sure that header menu link to certificates works on big screen """
+
     page = MainPage(web_browser, url='/')
 
     sub_header_index = 1
@@ -146,7 +153,8 @@ def test_check_sub_header_certeficates(web_browser):
 
 
 def test_check_sub_header_ratings(web_browser):
-    """ Make sure that link to ratings works on big screen """
+    """ Make sure that header menu link to ratings works on big screen """
+
     page = MainPage(web_browser, url='/')
 
     sub_header_index = 2
@@ -159,7 +167,8 @@ def test_check_sub_header_ratings(web_browser):
 
 
 def test_check_sub_header_novelty(web_browser):
-    """ Make sure that link to novelty works on big screen """
+    """ Make sure that header menu link to novelty works on big screen """
+
     page = MainPage(web_browser, url='/')
 
     sub_header_index = 3
@@ -172,7 +181,7 @@ def test_check_sub_header_novelty(web_browser):
 
 
 def test_main_page_gallery_next(web_browser):
-    """ Make sure that link to novelty works on big screen """
+    """ Make sure that header menu link to novelty works on big screen """
     page = MainPage(web_browser, url='/')
 
     carousel_items = page.elements(class_name="jcarousel-item")
@@ -194,7 +203,7 @@ def test_main_page_gallery_next(web_browser):
 
 
 def test_main_page_gallery_next_and_back(web_browser):
-    """ Make sure that link to novelty works on big screen """
+    """ Make sure that link to header menu novelty works on big screen """
     page = MainPage(web_browser, url='/')
 
     product = page.elements(class_name="product_labeled")[0]

@@ -2,7 +2,8 @@ from pages.labirint import MainPage
 
 
 def test_book_open_compare_menu(web_browser):
-    """ Make sure main search works fine. """
+    """ Make sure that we can open compare menu on a book. """
+
     web_browser.set_window_size(1280, 1024)
 
     page = MainPage(web_browser, url='/')
@@ -14,7 +15,8 @@ def test_book_open_compare_menu(web_browser):
 
 
 def test_add_book_to_compare(web_browser):
-    """ Make sure main search works fine. """
+    """ Make sure that we can add a book to the compare list. """
+
     web_browser.set_window_size(1280, 1024)
 
     page = MainPage(web_browser, url='/')
@@ -27,7 +29,8 @@ def test_add_book_to_compare(web_browser):
 
 
 def test_add_book_to_compare_and_close_menu(web_browser):
-    """ Make sure main search works fine. """
+    """ Make sure that we can add a book to the compare list and close menu. """
+
     web_browser.set_window_size(1280, 1024)
 
     page = MainPage(web_browser, url='/')
@@ -42,7 +45,8 @@ def test_add_book_to_compare_and_close_menu(web_browser):
 
 
 def test_add_two_and_compare(web_browser):
-    """ Make sure main search works fine. """
+    """ Make sure that we can add two books to the compare list. """
+
     page = MainPage(web_browser, url='/')
     web_browser.execute_script("window.scrollBy(0,500)")
 
@@ -68,13 +72,11 @@ def test_add_two_and_compare(web_browser):
 
     assert page.get_current_url() == f'{page._base_url}/compare/'
     assert page.elements(class_name="item-name__href").count() == 2
-    #  items = page.elements(class_name="item-name__href")
-    #  assert items[0].text == book_title_1
-    #  assert items[1].text == book_title_2
 
 
 def test_add_two_and_compare_and_cancel(web_browser):
-    """ Make sure main search works fine. """
+    """ Make sure that we can clear compare list. """
+
     page = MainPage(web_browser, url='/')
     web_browser.execute_script("window.scrollBy(0,500)")
 

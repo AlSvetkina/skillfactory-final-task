@@ -19,7 +19,6 @@ class WebPage(object):
     web_driver = None
 
     def __init__(self, web_driver, url=''):
-        print(f'WebPage - url: {url}')
         self.web_driver = web_driver
         self.get(url)
 

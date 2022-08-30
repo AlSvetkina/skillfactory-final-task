@@ -4,7 +4,8 @@ import time
 
 
 def test_put_one_in_basket(web_browser):
-    """ Make sure main search works fine. """
+    """ Make sure that we can put a book in a basket and
+        top bar icon will be in sync. """
 
     page = MainPage(web_browser, url='/')
 
@@ -17,7 +18,7 @@ def test_put_one_in_basket(web_browser):
 
 
 def test_put_twice_the_same_in_basket(web_browser):
-    """ Make sure main search works fine. """
+    """ Make sure that we can put the same book twice in the basket. """
 
     page = MainPage(web_browser, url='/')
 
@@ -40,7 +41,7 @@ def test_put_twice_the_same_in_basket(web_browser):
 
 
 def test_put_twice_different_in_basket(web_browser):
-    """ Make sure main search works fine. """
+    """ Make sure that we can put two different book in the basket. """
 
     page = MainPage(web_browser, url='/')
 
@@ -60,6 +61,7 @@ def test_put_twice_different_in_basket(web_browser):
 
 
 def test_add_to_basket_and_check_quantity(web_browser):
+    """ Make sure that quantity is correct on the basket page. """
 
     page = MainPage(web_browser, url='/')
 
@@ -73,6 +75,7 @@ def test_add_to_basket_and_check_quantity(web_browser):
 
 
 def test_add_to_basket_and_increase(web_browser):
+    """ Make sure that we can increase quantity on the basket page. """
 
     page = MainPage(web_browser, url='/')
 
@@ -92,7 +95,8 @@ def test_add_to_basket_and_increase(web_browser):
     assert quantity.get_attribute('value') == "3"
 
 
-def test_add_to_basket_and_descrease(web_browser):
+def test_add_to_basket_and_decrease(web_browser):
+    """ Make sure that we can increase/decrease quantity on the basket page. """
 
     page = MainPage(web_browser, url='/')
 
@@ -133,6 +137,7 @@ def test_add_to_basket_and_descrease(web_browser):
 
 
 def test_add_and_clean_basket(web_browser):
+    """ Make sure that we can clean the basket list. """
 
     page = MainPage(web_browser, url='/')
 
@@ -152,6 +157,7 @@ def test_add_and_clean_basket(web_browser):
 
 
 def test_add_and_clean_and_restore_basket(web_browser):
+    """ Make sure that we can restore the basket list. """
 
     page = MainPage(web_browser, url='/')
 

@@ -4,7 +4,8 @@ import time
 
 
 def test_main_page_book_details(web_browser):
-    """ Make sure that link to novelty works on big screen """
+    """ Make sure that link from a book leads to right details page.  """
+
     page = MainPage(web_browser, url='/')
 
     book = page.elements(class_name="product")[0]
@@ -19,7 +20,9 @@ def test_main_page_book_details(web_browser):
 
 
 def test_book_details_page_book_add_to_basket(web_browser):
-    """ Make sure that link to novelty works on big screen """
+    """ Make sure that we can add the book to the basket
+        from details page. """
+
     page = MainPage(web_browser, url='/')
 
     book = page.elements(class_name="product")[0]
@@ -42,7 +45,9 @@ def test_book_details_page_book_add_to_basket(web_browser):
 
 
 def test_book_details_page_defered(web_browser):
-    """ Make sure that link to novelty works on big screen """
+    """ Make sure that we can add the book to the deffered list
+        from details page. """
+
     page = MainPage(web_browser, url='/')
 
     book = page.elements(class_name="product")[0]
@@ -59,7 +64,8 @@ def test_book_details_page_defered(web_browser):
 
 
 def test_book_details_page_compare(web_browser):
-    """ Make sure that link to novelty works on big screen """
+    """ Make sure that we can compare a book on details page. """
+
     page = MainPage(web_browser, url='/')
 
     book = page.elements(class_name="product")[0]

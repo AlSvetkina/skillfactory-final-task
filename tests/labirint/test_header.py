@@ -2,7 +2,7 @@ from pages.labirint import MainPage
 
 
 def test_header_click_logo(web_browser):
-    """ Make sure main search works fine. """
+    """ Make sure that main logo always leads to main page. """
 
     page = MainPage(web_browser, url='/')
 

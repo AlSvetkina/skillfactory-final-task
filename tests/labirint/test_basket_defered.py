@@ -6,7 +6,7 @@ import time
 
 
 def test_book_deffered_page_add_book(web_browser):
-    """ Make sure main search works fine. """
+    """ Make sure that we can mark book as a deffered. """
 
     page = MainPage(web_browser, url='/')
 
@@ -20,7 +20,7 @@ def test_book_deffered_page_add_book(web_browser):
 
 
 def test_book_deffered_page_menu(web_browser):
-    """ Make sure main search works fine. """
+    """ Make sure that we can open deffered menu for a book. """
 
     page = MainPage(web_browser, url='/')
 
@@ -32,9 +32,12 @@ def test_book_deffered_page_menu(web_browser):
     assert page.elements(
         class_name="js-putorder-block-change")[0].is_displayed()
 
+    time.sleep(10)
+
 
 def test_book_deffered_page(web_browser):
-    """ Make sure main search works fine. """
+    """ Make sure that we can mark book as deffered and see it
+        on deffered page. """
 
     page = MainPage(web_browser, url='/')
 
@@ -55,7 +58,7 @@ def test_book_deffered_page(web_browser):
 
 
 def test_book_deffered_page_clear(web_browser):
-    """ Make sure main search works fine. """
+    """ Make sure that we can clean deffered list. """
 
     page = MainPage(web_browser, url='/')
 
@@ -75,7 +78,7 @@ def test_book_deffered_page_clear(web_browser):
 
 
 def test_book_deffered_page_preview(web_browser):
-    """ Make sure main search works fine. """
+    """ Make sure that preview for a book works on defferend page. """
 
     page = MainPage(web_browser, url='/')
 
@@ -97,7 +100,7 @@ def test_book_deffered_page_preview(web_browser):
 
 
 def test_book_deffered_page_preview_close(web_browser):
-    """ Make sure main search works fine. """
+    """ Make sure that we can close preview of a book on deffered page. """
 
     page = MainPage(web_browser, url='/')
 
@@ -125,7 +128,7 @@ def test_book_deffered_page_preview_close(web_browser):
 
 
 def test_book_deffered_page_select_page(web_browser):
-    """ Make sure main search works fine. """
+    """ Make sure that we can select a book on deffered page. """
 
     page = MainPage(web_browser, url='/')
 
@@ -147,7 +150,7 @@ def test_book_deffered_page_select_page(web_browser):
 
 
 def test_book_deffered_page_select_all_page(web_browser):
-    """ Make sure main search works fine. """
+    """ Make sure that we can select all books on deffered page. """
 
     page = MainPage(web_browser, url='/')
 
@@ -172,7 +175,7 @@ def test_book_deffered_page_select_all_page(web_browser):
 
 
 def test_book_deffered_page_select_all_and_move_to_basket(web_browser):
-    """ Make sure main search works fine. """
+    """ Make sure that we can move books to the basket. """
 
     page = MainPage(web_browser, url='/')
 
@@ -204,7 +207,7 @@ def test_book_deffered_page_select_all_and_move_to_basket(web_browser):
 
 
 def test_book_deffered_page_select_all_and_move_to_basket_and_confirm(web_browser):
-    """ Make sure main search works fine. """
+    """ Make sure that we can move books to the basket and confirm. """
 
     page = MainPage(web_browser, url='/')
 
@@ -246,7 +249,8 @@ def test_book_deffered_page_select_all_and_move_to_basket_and_confirm(web_browse
 
 
 def test_book_deffered_page_select_all_deselect_all_page(web_browser):
-    """ Make sure main search works fine. """
+    """ Make sure that we can select all and deselect all
+        books on deffered page. """
 
     page = MainPage(web_browser, url='/')
 
@@ -280,7 +284,8 @@ def test_book_deffered_page_select_all_deselect_all_page(web_browser):
 
 
 def test_book_deffered_page_select_all_and_delete_all(web_browser):
-    """ Make sure main search works fine. """
+    """ Make sure that we can select all and delete all
+        books from deffered list. """
 
     page = MainPage(web_browser, url='/')
 
@@ -309,7 +314,8 @@ def test_book_deffered_page_select_all_and_delete_all(web_browser):
 
 
 def test_book_deffered_page_select_and_deselect_page(web_browser):
-    """ Make sure main search works fine. """
+    """ Make sure that we can select and deselect a
+        book in the deffered list. """
 
     page = MainPage(web_browser, url='/')
 
@@ -333,7 +339,8 @@ def test_book_deffered_page_select_and_deselect_page(web_browser):
 
 
 def test_book_deffered_page_header_icon(web_browser):
-    """ Make sure main search works fine. """
+    """ Make sure that top header deffered icon is
+        in sync with deffered list. """
 
     page = MainPage(web_browser, url='/')
 
@@ -348,7 +355,7 @@ def test_book_deffered_page_header_icon(web_browser):
 
 
 def test_book_deffered_page_header_icon_to_putorder(web_browser):
-    """ Make sure main search works fine. """
+    """ Make sure that top header icon link goes to deffered page. """
 
     page = MainPage(web_browser, url='/')
 
@@ -368,7 +375,7 @@ def test_book_deffered_page_header_icon_to_putorder(web_browser):
 
 
 def test_book_deffered_page_header_icon_to_basket_putorder(web_browser):
-    """ Make sure main search works fine. """
+    """ Make sure that deffered books displays in basket. """
 
     page = MainPage(web_browser, url='/')
 
@@ -392,7 +399,7 @@ def test_book_deffered_page_header_icon_to_basket_putorder(web_browser):
 
 
 def test_book_deffered_page_header_icon_to_basket_putorder_move_to_basket(web_browser):
-    """ Make sure main search works fine. """
+    """ Make sure that we can move defferd books to basket on basket page. """
 
     page = MainPage(web_browser, url='/')
 
