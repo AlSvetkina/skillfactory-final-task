@@ -18,7 +18,7 @@ class WebElement(object):
     _timeout = 10
     _wait_after_click = False  # TODO: how we can wait after click?
 
-    def __init__(self, web_driver, timeout=10, wait_after_click=False, **kwargs):
+    def __init__(self, web_driver, timeout=1, wait_after_click=False, **kwargs):
         self._web_driver = web_driver
         self._timeout = timeout
         self._wait_after_click = wait_after_click
@@ -26,7 +26,7 @@ class WebElement(object):
         for attr in kwargs:
             self._locator = (str(attr).replace('_', ' '), str(kwargs.get(attr)))
 
-    def find(self, timeout=10):
+    def find(self, timeout=1):
         """ Find element on the page. """
 
         element = None
@@ -40,7 +40,7 @@ class WebElement(object):
 
         return element
 
-    def wait_to_be_clickable(self, timeout=10, check_visibility=True):
+    def wait_to_be_clickable(self, timeout=1, check_visibility=True):
         """ Wait until the element will be ready for click. """
 
         element = None
@@ -79,7 +79,7 @@ class WebElement(object):
 
         return False
 
-    def wait_until_not_visible(self, timeout=10):
+    def wait_until_not_visible(self, timeout=1):
 
         element = None
 
@@ -230,7 +230,7 @@ class ManyWebElements(WebElement):
         elements = self.find()
         return elements[item]
 
-    def find(self, timeout=10):
+    def find(self, timeout=1):
         """ Find elements on the page. """
 
         elements = []

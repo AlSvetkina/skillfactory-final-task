@@ -1,11 +1,7 @@
 #!/usr/bin/python3
 # -*- encoding=utf8 -*-
 
-import os
-
 from pages.base import WebPage
-from pages.elements import WebElement
-from pages.elements import ManyWebElements
 
 
 class MainPage(WebPage):
@@ -15,12 +11,16 @@ class MainPage(WebPage):
     def __init__(self, web_driver, url=''):
         self._base_url = 'https://www.labirint.ru'
         super().__init__(web_driver, self._base_url + url)
+        #  element = self.web_driver.execute_script(
+            #  "return document.querySelector('body').querySelector('[class=\"js-cookie-policy-agree\"]')")
+        #  print('element=', element)
 
         self.search = self.element(id='search-field')
 
-        policy = self.elements(class_name="js-cookie-policy-agree")
-        if policy.count() == 1:
-            policy[0].click()
+        cookie_policy = self.element(
+            class_name="js-cookie-policy-agree").find(timeout=1)
+        if cookie_policy:
+            cookie_policy.click()
 
 
     def get_search_suggestions(self):
