@@ -20,7 +20,7 @@ class MainPage(WebPage):
             cookie_policy.click()
 
     def get_search_suggestions(self):
-        return self.elements(class_name="b-suggests-e-item-name")
+        return self.elements(class_name="b-suggests-item")
 
 
 class DetailPage(MainPage):

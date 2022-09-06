@@ -9,6 +9,7 @@ def test_check_search(web_browser):
     page = MainPage(web_browser, url='/')
 
     page.search.set_value("Букварь")
+    time.sleep(2)
     suggestions = page.get_search_suggestions()
 
     assert suggestions.count() == 5
@@ -20,6 +21,7 @@ def test_check_wrong_input_in_search(web_browser):
     page = MainPage(web_browser, url='/')
 
     page.search.set_value(",erdfhm")
+    time.sleep(2)
     suggestions = page.get_search_suggestions()
 
     assert suggestions.count() == 5

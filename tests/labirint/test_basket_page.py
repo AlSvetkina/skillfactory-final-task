@@ -13,8 +13,10 @@ def test_put_one_in_basket(web_browser):
 
     buy_links[0].click()
 
-    basket = page.elements(class_name="b-header-b-personal-e-icon-count-m-cart")[0]
-    assert basket.text == "1"
+    time.sleep(2)
+
+    basket = page.element(class_name="b-header-b-personal-e-icon-count-m-cart")
+    assert basket.get_text() == "1"
 
 
 def test_put_twice_the_same_in_basket(web_browser):

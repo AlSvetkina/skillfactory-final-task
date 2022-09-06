@@ -19,15 +19,18 @@ def test_book_details_page_book_add_to_basket(web_browser):
 
     page = DetailPage(web_browser)
 
-    page.elements(class_name="btn-buy")[0].click()
+    page.element(class_name="btn-buy").click()
 
-    time.sleep(1)
+    buble = page.element(class_name="plusone-buble")
+    assert buble
 
-    page.elements(class_name="tobasket")[0].click()
+    page.element(class_name="tobasket").click()
 
     assert page.wait_for_url('cart/')
 
     product_cart = page.element(class_name="product-cart")
+
+    product_cart.find(timeout=2)
 
     assert page.book_id == product_cart.get_attribute("data-product-id")
 
