@@ -1,34 +1,23 @@
-from pages.labirint import MainPage
+from pages.labirint import MainPage, DetailPage
 
 import time
 
 
-def test_main_page_book_details(web_browser):
+def test_book_details_from_main_page(web_browser):
     """ Make sure that link from a book leads to right details page.  """
 
-    page = MainPage(web_browser, url='/')
+    page = DetailPage(web_browser)
+    assert page.get_current_url() == f'{page._base_url}/books/{page.book_id}/'
 
-    book = page.elements(class_name="product")[0]
-    id = book.get_attribute("data-product-id")
-
-    book.click()
-
-    assert page.get_current_url() == f'{page._base_url}/books/{id}/'
-
-    book = page.elements(class_name="product")[0]
-    assert id == book.get_attribute("data-product-id")
+    book = page.element(id="product-info")
+    assert page.book_id == book.get_attribute("data-product-id")
 
 
 def test_book_details_page_book_add_to_basket(web_browser):
     """ Make sure that we can add the book to the basket
         from details page. """
 
-    page = MainPage(web_browser, url='/')
-
-    book = page.elements(class_name="product")[0]
-    id = book.get_attribute("data-product-id")
-
-    book.click()
+    page = DetailPage(web_browser)
 
     page.elements(class_name="btn-buy")[0].click()
 
@@ -36,11 +25,13 @@ def test_book_details_page_book_add_to_basket(web_browser):
 
     page.elements(class_name="tobasket")[0].click()
 
-    product_cart = page.elements(class_name="product-cart")[0]
+    assert page.wait_for_url('cart/')
 
-    assert id == product_cart.get_attribute("data-product-id")
+    product_cart = page.element(class_name="product-cart")
 
-    quantity = page.elements(class_name="quantity")[0]
+    assert page.book_id == product_cart.get_attribute("data-product-id")
+
+    quantity = page.element(class_name="quantity")
     assert quantity.get_attribute('value') == "1"
 
 
@@ -48,38 +39,31 @@ def test_book_details_page_defered(web_browser):
     """ Make sure that we can add the book to the deffered list
         from details page. """
 
-    page = MainPage(web_browser, url='/')
+    page = DetailPage(web_browser)
 
-    book = page.elements(class_name="product")[0]
-    id = book.get_attribute("data-product-id")
+    fave_btn = page.element(class_name="fave")
+    fave_btn.click()
+    fave_btn.click()
 
-    book.click()
+    assert page.wait_for_url('cabinet/putorder/')
 
-    page.elements(class_name="fave")[0].click()
-    page.elements(class_name="fave")[0].click()
+    product_cart = page.element(class_name="watched")
 
-    product_cart = page.elements(class_name="product-cart")[0]
-
-    assert id == product_cart.get_attribute("data-product-id")
+    assert page.book_id == product_cart.get_attribute("data-product-id")
 
 
 def test_book_details_page_compare(web_browser):
     """ Make sure that we can compare a book on details page. """
 
-    page = MainPage(web_browser, url='/')
+    page = DetailPage(web_browser)
 
-    book = page.elements(class_name="product")[0]
-    id = book.get_attribute("data-product-id")
-
-    book.click()
-
-    btn_compare = page.elements(class_name="big-compare")[0]
+    btn_compare = page.element(class_name="big-compare")
     btn_compare.click()
     btn_compare.click()
 
-    assert page.get_current_url() == f'{page._base_url}/compare/'
+    assert page.wait_for_url('compare/')
 
-    product_cart = page.elements(class_name="compare-main__column")[0]
+    product_cart = page.element(class_name="compare-main__column")
 
-    assert id == product_cart.get_attribute("data-product-id")
+    assert page.book_id == product_cart.get_attribute("data-product-id")
 

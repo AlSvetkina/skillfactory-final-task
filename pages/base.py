@@ -35,6 +35,12 @@ class WebPage(object):
         self.web_driver.back()
         self.wait_page_loaded()
 
+    def wait_for_url(self, url, timeout=5):
+        wait = WebDriverWait(self.web_driver, timeout)
+        url = f'{self._base_url}/{url}'
+        wait.until(EC.url_to_be(url))
+        return self.get_current_url() == url
+
     def send_escape(self):
         ActionChains(self.web_driver).send_keys(Keys.ESCAPE).perform()
 
